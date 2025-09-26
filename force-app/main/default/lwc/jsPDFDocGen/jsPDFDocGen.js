@@ -90,6 +90,16 @@ export default class JsPDFDocGen extends LightningElement {
     return String(value) ?? '';
   }
 
+  trimTitle(value) {
+    let trimmed = value.split("(")[0];
+
+    if(trimmed.length > 62) {
+      trimmed = trimmed.substring(0, 62) + '...';
+    }
+
+    return trimmed;
+  }
+
   convertDate(value) {
     let input = value;
     console.log("input: " + input);
@@ -320,7 +330,7 @@ export default class JsPDFDocGen extends LightningElement {
             {
               height: 25,
               cells: [
-                { label: "CTLE Activity Title:", value: this.sanitize(this.pdCompletion?.CTLE_Activity_Title__c), width: 100 }
+                { label: "CTLE Activity Title:", value: this.trimTitle(this.sanitize(this.pdCompletion?.CTLE_Activity_Title__c)), width: 100 }
               ]
             },
             {
@@ -494,8 +504,8 @@ export default class JsPDFDocGen extends LightningElement {
       doc.text( "Number of hours awarded", 390, 564);
 
       doc.setFont("helvetica", "normal");
-      doc.setFontSize(11);
-      doc.text( this.numberOfHours, 532.8, 564);
+      doc.setFontSize(14);
+      doc.text( this.numberOfHours, 532.8, 565);
 
       doc.setFont("helvetica", "normal");
       doc.setFontSize(11);
