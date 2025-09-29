@@ -86,8 +86,8 @@ export default class JsPDFDocGen extends LightningElement {
   }
 
   sanitize(value) {
-    console.log(String(value));
-    return String(value) ?? '';
+    if (value == null) return '';
+    return String(value);
   }
 
   trimTitle(value) {
@@ -447,7 +447,7 @@ export default class JsPDFDocGen extends LightningElement {
         doc.text( "Y", x + 174, (startY - ((25 * 8) + 16)) + 14);
       };
 
-      doc.setFont("helvetica", "bold");
+      doc.setFont("helvetica", "normal");
       doc.setFontSize(11);
       doc.text( "Pedagogy", x + 200, (startY - ((25 * 8) + 16)) + 14);
 
@@ -459,7 +459,7 @@ export default class JsPDFDocGen extends LightningElement {
         doc.text( "Y", x + 280, (startY - ((25 * 8) + 16)) + 14);
       };
 
-      doc.setFont("helvetica", "bold");
+      doc.setFont("helvetica", "normal");
       doc.setFontSize(11);
       doc.text( "Content", x + 306, (startY - ((25 * 8) + 16)) + 14);
 
@@ -471,7 +471,7 @@ export default class JsPDFDocGen extends LightningElement {
         doc.text( "Y", x + 368, (startY - ((25 * 8) + 16)) + 14);
       };
 
-      doc.setFont("helvetica", "bold");
+      doc.setFont("helvetica", "normal");
       doc.setFontSize(11);
       doc.text( "English Language Learning", x + 390, (startY - ((25 * 8) + 16)) + 14);
 
